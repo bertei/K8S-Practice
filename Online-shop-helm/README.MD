@@ -1,0 +1,1 @@
+### This repository contains k8s manifests which I used to learn k8s/helm concepts utilizing minikube.
