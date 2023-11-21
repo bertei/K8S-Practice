@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productcatalog-ms
+spec:
+  selector:
+    matchLabels:
+      app: productcatalog-app
+  template:
+    metadata:
+      labels:
+        app: productcatalog-app
+    spec:
+      containers:
+      - name: productcatalog-container
+        image: gcr.io/google-samples/microservices-demo/productcatalogservice:v0.2.3
+        ports:
+        - containerPort: 3550
+        env:
+        - name: PORT
+          value: "3550"
+        - name: DISABLE_PROFILER
+          value: "1"

@@ -1,0 +1,17 @@
+deployName: payment-deployment
+appReplicas: 1
+appName: payment-app
+containerName: payment-container
+containerImage: gcr.io/google-samples/microservices-demo/paymentservice
+imageTag: v0.2.3
+containerPort: 50051
+containerEnvVars:
+- name: PORT
+  value: "50051"
+- name: DISABLE_PROFILER
+  value: "1"
+
+serviceName: payment-service
+serviceType: ClusterIP
+servicePort: 50051
+targetPort: 50051

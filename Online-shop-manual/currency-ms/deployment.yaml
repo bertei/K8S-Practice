@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currency-ms
+spec:
+  selector:
+    matchLabels:
+      app: currency-app
+  template:
+    metadata:
+      labels:
+        app: currency-app
+    spec:
+      containers:
+      - name: currency-container
+        image: gcr.io/google-samples/microservices-demo/currencyservice:v0.2.3
+        ports:
+        - containerPort: 7000
+        env:
+        - name: "PORT"
+          value: "7000"
+        - name: DISABLE_PROFILER
+          value: "1"

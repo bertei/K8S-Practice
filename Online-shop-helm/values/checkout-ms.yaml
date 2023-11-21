@@ -1,0 +1,27 @@
+deployName: checkout-deployment
+appReplicas: 1
+appName: checkout-app
+containerName: checkout-container
+containerImage: gcr.io/google-samples/microservices-demo/checkoutservice
+imageTag: v0.2.3
+containerPort: 5050
+containerEnvVars:
+- name: PORT
+  value: "5050"
+- name: PRODUCT_CATALOG_SERVICE_ADDR
+  value: "productcatalog-service:3550"
+- name: SHIPPING_SERVICE_ADDR
+  value: "shipping-service:50051"
+- name: PAYMENT_SERVICE_ADDR
+  value: "payment-service:50051"
+- name: EMAIL_SERVICE_ADDR
+  value: "email-service:5000"
+- name: CURRENCY_SERVICE_ADDR
+  value: "currency-service:7000"
+- name: CART_SERVICE_ADDR
+  value: "cart-service:7070"
+
+serviceName: checkout-service
+serviceType: ClusterIP
+servicePort: 5050
+targetPort: 5050

@@ -1,0 +1,17 @@
+deployName: xxx-deployment
+appReplicas: 1
+appName: xxx-app
+containerName: xxx-container
+containerImage: xxx
+imageTag: xxx
+containerPort: xxx
+containerEnvVars:
+- name: ENV_VAR_ONE
+  value: "value"
+- name: ENV_VAR_TWO
+  value: "value"
+
+serviceName: xxx-service
+serviceType: type
+servicePort: xxx
+targetPort: xxx

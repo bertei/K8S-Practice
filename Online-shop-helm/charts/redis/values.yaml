@@ -1,0 +1,14 @@
+deployName: xxx-deployment
+appReplicas: 1
+appName: xxx-app
+containerName: xxx-container
+containerImage: xxx
+imageTag: xxx
+containerPort: xxx
+mountPath: /xxx
+volumeName: xxx-volume
+
+serviceName: xxx-service
+serviceType: type
+servicePort: xxx
+targetPort: xxx

@@ -1,0 +1,17 @@
+deployName: shipping-deployment
+appReplicas: 1
+appName: shipping-app
+containerName: shipping-container
+containerImage: gcr.io/google-samples/microservices-demo/shippingservice
+imageTag: v0.2.3
+containerPort: 50051
+containerEnvVars:
+- name: PORT
+  value: "50051"
+- name: DISABLE_PROFILER
+  value: "1"
+
+serviceName: shipping-service
+serviceType: ClusterIP
+servicePort: 50051
+targetPort: 50051
