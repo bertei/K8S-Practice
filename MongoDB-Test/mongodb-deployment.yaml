@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-deployment
+  labels:
+    deploy: mongodb-deploy-label
+spec:
+  replicas: 1
+  selector: #This selector matches the container's label
+    matchLabels:
+      app: mongodb-pod-label
+  template:
+    metadata:
+      labels:
+        app: mongodb-pod-label
+    spec:
+      containers:
+      - name: mongodb-pod
+        image: mongo
+        ports:
+        - containerPort: 27017
+        env: #Sets up runtime env variables for the container based on the ones defined in mongodb-secret component
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongo-root-username
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: mongo-root-password
+        volumeMounts:
+          - name: configmap-vol
+            mountPath: /usr/configmap
+      volumes:
+        - name: configmap-vol
+          configMap:
+            name: mongodb-configmap-volume
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service
+spec:
+  selector:
+    app: mongodb-pod-label
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
